@@ -66,6 +66,8 @@ import Handler.Tags
 import Handler.Tickets
 import Handler.RepoFeed
 import Handler.BuildFeed
+import Handler.ProjectSignup
+import Handler.Licenses
 
 import Widgets.Navbar
 

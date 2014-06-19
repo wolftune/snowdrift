@@ -54,7 +54,6 @@ UserSetting
     setting UserSettingName
     value String
 
-
 Project
     createdTs UTCTime
     name Text
@@ -67,6 +66,26 @@ Project
     UniqueProjectAccount account
     UniqueProjectHandle handle
     deriving Show
+
+ProjectSignup
+    name Text
+    website Text Maybe
+    projectType [ProjectType]
+    license [LicenseId]
+    location Text
+    legalStatus LegalStatus
+    legalStatusComments Text Maybe
+    mission Textarea
+    goals Textarea
+    funds Textarea
+
+License
+    name Text
+    classification LicenseClassificationType
+    projectType LicenseProjectType
+    options Textarea Maybe
+    website Text 
+--    image ByteString Maybe
 
 ProjectBlog
     time UTCTime
@@ -140,6 +159,15 @@ VolunteerInterest
     volunteer VolunteerApplicationId
     interest InterestId
 
+-- License
+--    licenseName Text
+--    licenseType
+--    projectType
+--    licenseURL Text
+--    licenseImage
+
+-- LicenseShortList
+--    license LicenseId
 
 Message
     project ProjectId Maybe

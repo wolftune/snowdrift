@@ -23,6 +23,8 @@
 /p/#Text/b ProjectBlogR GET POST
 /p/#Text/b/#ProjectBlogId ProjectBlogPostR GET
 
+/projectsignup ProjectSignupR GET POST
+
 /p/#Text/w WikiPagesR GET
 /p/#Text/w/#Text WikiR GET POST
 /p/#Text/w/#Text/edit EditWikiR GET
@@ -77,3 +79,5 @@ p/#Text/applications ApplicationsR GET
 
 /dev/repo RepoFeedR GET
 /dev/build BuildFeedR GET
+
+/admin/licenses LicenseEntryR GET POST
