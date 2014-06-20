@@ -1,7 +1,7 @@
-module Handler.Licenses where
+module Handler.License where
 
 import Import
-import Model.ProjectSignup
+import Model.License
 
 licenseEntryForm :: Html -> MForm Handler (FormResult License, Widget)
 licenseEntryForm _ = do
