@@ -1,0 +1,63 @@
+<H1 align="center">
+    Snowdrift.coop
+<H3 align="center">
+    Project SignUp Form
+
+<form .form-horizontal>
+    <fieldset>
+        <legend>
+            General Project Info
+        <div .row>
+            <div .form-group>
+                <div .col-md-5>
+                    ^{fvInput projectNameView}
+                <div .col-md-offset-1 .col-md-6>
+                    ^{fvInput projectWebsiteView}
+        <div .row>
+            <div .form-group>
+                <div .col-md-2>
+                    <label>
+                        Select Applicable Project Type(s):
+                <div .col-md-2>
+                    ^{fvInput projectTypeView}
+                <div .col-md-offset-1 .col-md-2>
+                    <label>
+                        Select Applicable Project License(s):
+                <div .col-md-2>
+                    ^{fvInput projectLicenseView}
+
+    <br>
+    <fieldset>
+        <legend>
+            Legal Information
+        <div .row>
+            <div .form-group>
+                <div .col-md-6>
+                    ^{fvInput projectLocationView}
+                <div .col-md-2 align="right">
+                    <label>
+                        <p>
+                            Legal Status:
+                <div .col-md-4>
+                    ^{fvInput projectLegalStatusView}
+        <div .row>
+            <div .form-group>
+                <div .col-md-offset-6 .col-md-6>
+                    ^{fvInput projectLegalStatusCommentsView}
+
+    <br>
+    <fieldset>
+        <legend>
+            Project Intent
+        <div .row>
+            <div .form-group>
+                <div .col-md-12>
+                    ^{fvInput projectMissionView}
+        <div .row>
+            <div .form-group>
+                <div .col-md-12>
+                    ^{fvInput projectGoalsView}
+        <div .row>
+            <div .form-group>
+                <div .col-md-12>
+                    ^{fvInput projectFundsView}
