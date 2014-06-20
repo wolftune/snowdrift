@@ -3,6 +3,7 @@ module Handler.ProjectSignup where
 import Import
 
 import Model.ProjectSignup
+import Model.License
 
 projectSignupForm :: Html -> MForm Handler (FormResult ProjectSignup, Widget)
 projectSignupForm _ = do
@@ -11,6 +12,7 @@ projectSignupForm _ = do
     (projectNameRes, projectNameView) <- mreq textField (generateFieldSettings "Project Name" [("class", "form-control"), ("placeholder", "Project Name")]) Nothing
     (projectWebsiteRes, projectWebsiteView) <- mopt textField (generateFieldSettings "Website" [("class", "form-control"), ("placeholder", "Project Website")]) Nothing
     (projectTypeRes, projectTypeView) <- mreq (multiSelectFieldList getProjectTypes) (generateFieldSettings "Project Type" [("class", "form-control"), ("placeholder", "Project Type(s)")]) Nothing
+    (projectTypeOtherRes, projectTypeOtherView) <- mopt textField (generateFieldSettings "ProjectTypeOther" [("class", "form-control"), ("placeholder", "Describe Other Project Type")]) Nothing
     (projectLicenseRes, projectLicenseView) <- mreq (multiSelectFieldList $ getLicenseLabels licenses) (generateFieldSettings "License" [("class", "form-control"), ("placeholder", "Select License(s)")]) Nothing
     (projectLocationRes, projectLocationView) <- mreq textField (generateFieldSettings "Location" [("class", "form-control"), ("placeholder", "Location Project is legally based out of")]) Nothing
     (projectLegalStatusRes, projectLegalStatusView) <- mreq (selectFieldList getLegalStatuses) (generateFieldSettings "Legal Status" [("class", "form-control"), ("placeholder", "Legal Status of Project")]) Nothing
@@ -23,6 +25,7 @@ projectSignupForm _ = do
                 <$> projectNameRes 
                 <*> projectWebsiteRes
                 <*> projectTypeRes
+                <*> projectTypeOtherRes
                 <*> projectLicenseRes
                 <*> projectLocationRes
                 <*> projectLegalStatusRes

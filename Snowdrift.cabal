@@ -32,6 +32,8 @@ library
                      Model.Project
                      Model.ProjectSignup
                      Model.ProjectSignup.Internal
+                     Model.License
+                     Model.License.Internal
                      Model.Role
                      Model.Permission
                      Model.Shares
@@ -52,7 +54,7 @@ library
                      Handler.Widget
                      Handler.Project
                      Handler.ProjectSignup
-                     Handler.Licenses
+                     Handler.License
                      Handler.Invite
                      Handler.Invitation
                      Handler.UpdateShares

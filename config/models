@@ -71,6 +71,7 @@ ProjectSignup
     name Text
     website Text Maybe
     projectType [ProjectType]
+    projectTypeOther Text Maybe
     license [LicenseId]
     location Text
     legalStatus LegalStatus

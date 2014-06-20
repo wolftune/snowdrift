@@ -20,7 +20,8 @@ import Model.Permission.Internal (PermissionLevel)
 import Model.Markdown.Diff (MarkdownDiff)
 import Model.ViewType.Internal (ViewType)
 import Model.Settings.Internal (UserSettingName)
-import Model.ProjectSignup.Internal (ProjectType, LicenseClassificationType, LicenseProjectType, LegalStatus)
+import Model.ProjectSignup.Internal (ProjectType) 
+import Model.License.Internal (LicenseClassificationType, LicenseProjectType, LegalStatus)
 
 import Yesod.Markdown (Markdown)
 
