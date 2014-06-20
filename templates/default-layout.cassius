@@ -62,7 +62,7 @@ input[type=submit]:active
     box-shadow : 0 3px 5px rgba(0, 0, 0, 0.3) inset
 
 input[type=text], input[type=email]
-    width : 30em
+    width : 100%
 
 input.inline_shares
     width : 3.5em

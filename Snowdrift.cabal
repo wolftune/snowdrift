@@ -30,6 +30,8 @@ library
                      Model.Currency
                      Model.ClosureType
                      Model.Project
+                     Model.ProjectSignup
+                     Model.ProjectSignup.Internal
                      Model.Role
                      Model.Permission
                      Model.Shares
@@ -49,6 +51,8 @@ library
                      Handler.User
                      Handler.Widget
                      Handler.Project
+                     Handler.ProjectSignup
+                     Handler.Licenses
                      Handler.Invite
                      Handler.Invitation
                      Handler.UpdateShares

@@ -8,6 +8,7 @@ import Yesod.Auth.HashDB (HashDBUser (..))
 import Data.Text (Text)
 import Database.Persist.Quasi
 import Data.Typeable (Typeable)
+import Data.ByteString (ByteString)
 
 import Data.Time.Clock (UTCTime)
 import Data.Int (Int64)
@@ -19,6 +20,7 @@ import Model.Permission.Internal (PermissionLevel)
 import Model.Markdown.Diff (MarkdownDiff)
 import Model.ViewType.Internal (ViewType)
 import Model.Settings.Internal (UserSettingName)
+import Model.ProjectSignup.Internal (ProjectType, LicenseClassificationType, LicenseProjectType, LegalStatus)
 
 import Yesod.Markdown (Markdown)
 
@@ -39,3 +41,11 @@ instance HashDBUser User where
 data DBException = DBException deriving (Typeable, Show)
 
 instance Exception DBException where
+
+generateFieldSettings :: Text -> [(Text, Text)] -> FieldSettings a
+generateFieldSettings name attrs = FieldSettings { fsLabel = SomeMessage name
+                                                 , fsTooltip = Just (SomeMessage name)
+                                                 , fsName = Just name
+                                                 , fsId = Just name
+                                                 , fsAttrs = attrs
+                                                 }
