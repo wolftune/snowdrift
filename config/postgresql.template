@@ -1,6 +1,6 @@
 Default: &defaults
   user: snowdrift_development
-  password: REPLACE WITH YOUR PASSPHRASE 
+  password: snowdrift
   host: localhost
   port: 5432
   database: snowdrift_development

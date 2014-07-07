@@ -13,7 +13,6 @@ About the frameworks and tools we use
 =====================================
 
 The Snowdrift.coop site uses the **[Yesod web framework](http://www.yesodweb.com/)**.
-Like the software itself, the associated book and documentation are all FLO and quite thorough.
 
 Yesod uses the Haskell programming language alongside its
 [Shakespearean Templates](http://www.yesodweb.com/book/shakespearean-templates).
@@ -59,6 +58,8 @@ VIM users should also install
 
 Emacs users should use a package manager (preferably Marmalade) to install
 [Haskell Mode](https://github.com/haskell/haskell-mode).
+
+If you search, you will find great numbers of additional Haskell plugins for text-editors.
 
 
 Development guidelines and notes
@@ -111,6 +112,8 @@ and "git push" will go the other direction, sending any local commits to Gitorio
 
 After pushing to your online account,
 alert us to the changes with Gitorious' "request merge" or GitHub's "pull request" commands on their websites.
+
+<!-- TODO: maybe explain how to set up shortcut names in git to use instead of long address -->
 
 To pull updates from our main code, use
 
@@ -320,7 +323,9 @@ Resetting your database
 To remove any changes and reset your database to the devDB default
 (such as when others have provided a new update you want to try
 or to start clean before making changes you plan to commit),
-follow these steps:
+Use the bash script at /dev/reset-db.sh
+
+For those not using bash or otherwise wanting manual instructions, follow these steps:
 
 Start by deleting your database:
 
