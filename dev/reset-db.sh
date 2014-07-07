@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -f "README.md" ]; then
-  echo "Please run from the root directory."
+  echo "Please run from the project's root directory."
   exit 1;
 fi
 
