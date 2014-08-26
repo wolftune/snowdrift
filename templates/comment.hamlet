@@ -1,44 +1,24 @@
 <div .comment :is_unapproved:.unapproved :is_top_level:.top_level :is_even_depth:.even_depth :is_odd_depth:.odd_depth>
-    <div>
-        <div .comment-head>
+    <div .comment-head>
+        <div .comment-head-item>
             $maybe author_avatar <- userAvatar user
                 <a href="@{UserR user_id}">
                     <img .small_avatar src="#{author_avatar}"> #
             <a href="@{UserR user_id}">
                 #{userDisplayName (Entity user_id user)}
-        <div .comment-head>
+        <div .comment-head-item>
             $maybe moderated_ts <- commentModeratedTs comment
                 ^{renderTime moderated_ts}
             $nothing
                 ^{renderTime $ commentCreatedTs comment}
-        <div .comment-head :is_preview:.preview>
-            |
-        <div .comment-head :is_preview:.preview>
-            <a href="@{comment_route_permalink comment_id}">
-                permalink
-        $maybe parent_id <- commentParent comment
-            <div .comment-head :is_preview:.preview>
-                |
-            <div .comment-head :is_preview:.preview>
-                <a href="@{comment_route_permalink parent_id}">
-                    parent
 
-    <div :is_preview:.preview>
-
-        $if can_edit
-            <div .comment-action>
-                <a href="@{comment_route_edit comment_id}">
-                    edit
-
-        $if can_delete
-            <div .comment-action>
-                <a href="@{comment_route_delete comment_id}">
-                    delete
-
-        $if can_retract
-            <div .comment-action>
-                <a href="@{comment_route_retract comment_id}" style="color: darkred">
-                    retract
+        $# TODO(mitchell): remove 'can_establish' from CommentActionPermissions
+        $if can_approve && can_establish
+            <div .comment-action .comment-action-approve>
+                <a href="@{comment_route_approve comment_id}">
+                    approve
+                <a href="@{UserR user_id}">
+                    establish user
 
     $forall closure <- earlier_closures
         $case commentClosureType closure
@@ -81,6 +61,10 @@
                     #{flag_markdown}
             <i>Please edit to address these concerns and repost.
 
+    $if is_unapproved
+        <i style="color: green">comment awaiting moderator approval
+
+
     #{commentText comment}
 
     <div>
@@ -88,11 +72,30 @@
             ^{tagWidget tag}
 
     <div :is_preview:.preview>
+        $if can_reply
+            <div .comment-action>
+                <a href="@{comment_route_reply comment_id}">
+                    reply
+
+        $if can_edit
+            <div .comment-action>
+                <a href="@{comment_route_edit comment_id}">
+                    edit
 
         $if can_close
             <div .comment-action>
-                <a href="@{comment_route_close comment_id}" style="color: goldenrod">
+                <a href="@{comment_route_close comment_id}">
                     close
+
+        $if can_retract
+            <div .comment-action>
+                <a href="@{comment_route_retract comment_id}">
+                    retract
+
+        $if can_delete
+            <div .comment-action>
+                <a href="@{comment_route_delete comment_id}">
+                    delete
 
         $if can_rethread
             <div .comment-action>
@@ -109,23 +112,13 @@
                 <a href="@{comment_route_flag comment_id}">
                     flag
 
-        $if can_reply
+        $maybe parent_id <- commentParent comment
             <div .comment-action>
-                <a href="@{comment_route_reply comment_id}">
-                    reply
+                <a href="@{comment_route_permalink parent_id}">
+                    parent
 
-    <div :is_preview:.preview>
-        $if can_approve
-            <div .comment-action>
-                <a href="@{comment_route_approve comment_id}" style="color: green">
-                    approve
-
-        $if can_establish
-            <div .comment-action>
-                <a href="@{UserR user_id}" style="color: green">
-                    establish user
-        $if can_retract
-            $if is_unapproved
-                <i style="color: green">comment awaiting moderator approval
+        <div .comment-action>
+            <a href="@{comment_route_permalink comment_id}">
+                permalink
 
     ^{inner_widget}

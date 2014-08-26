@@ -5,7 +5,7 @@
     font-size : 15px
 
 .comment p, .comment ul, .comment ol, .comment h1, .comment h2, .comment h3, .comment h4, .comment h5, .comment h6
-    margin : .5em 0
+    margin : .2em 0
 
 .comment figure
     text-align : left
@@ -20,11 +20,20 @@
     font-size : 14px
     margin : 1em
 
-.comment-head, .comment-action
-    margin-right : 1em
-    margin-bottom : 0.5em
+.comment-head-item
     display : inline-block
-    padding : 2px 5px
+
+.comment-action
+    display : inline-block
+    margin : 0px 2px
+
+.comment-action a, .comment-action a:visited
+    font-size: 0.7em
+    color: gray
+    font-weight: bold
+
+.comment-action-approve
+    font-weight : bold
 
 .top_level
     border-left : solid black 0.2em
