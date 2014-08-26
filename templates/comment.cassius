@@ -22,18 +22,18 @@
 
 .comment-head-item
     display : inline-block
+    padding : 0 4px
 
 .comment-action
     display : inline-block
-    margin : 0px 2px
+    padding : 0px 2px
+    font-size: 14px
 
 .comment-action a, .comment-action a:visited
-    font-size: 0.7em
     color: gray
-    font-weight: bold
 
 .comment-action-approve
-    font-weight : bold
+    color : green
 
 .top_level
     border-left : solid black 0.2em

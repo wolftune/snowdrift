@@ -1,16 +1,27 @@
 <div .comment :is_unapproved:.unapproved :is_top_level:.top_level :is_even_depth:.even_depth :is_odd_depth:.odd_depth>
     <div .comment-head>
+
         <div .comment-head-item>
             $maybe author_avatar <- userAvatar user
                 <a href="@{UserR user_id}">
                     <img .small_avatar src="#{author_avatar}"> #
             <a href="@{UserR user_id}">
                 #{userDisplayName (Entity user_id user)}
+
         <div .comment-head-item>
             $maybe moderated_ts <- commentModeratedTs comment
                 ^{renderTime moderated_ts}
             $nothing
                 ^{renderTime $ commentCreatedTs comment}
+
+        $maybe parent_id <- commentParent comment
+            <div .comment-head-item>
+                <a href="@{comment_route_permalink parent_id}">
+                    parent
+
+        <div .comment-head-item>
+            <a href="@{comment_route_permalink comment_id}">
+                permalink
 
         $# TODO(mitchell): remove 'can_establish' from CommentActionPermissions
         $if can_approve && can_establish
@@ -24,12 +35,12 @@
         $case commentClosureType closure
             $of Retracted
                 <div .retracted>
-                    A comment above this one was retracted ^{renderTime (commentClosureTs closure)}
+                    A comment above was retracted ^{renderTime (commentClosureTs closure)}
                     #{commentClosureReason closure}
 
             $of Closed
                 <div .closed>
-                    A comment above this one was closed at ^{renderTime (commentClosureTs closure)}
+                    A comment above was closed at ^{renderTime (commentClosureTs closure)}
                     #{commentClosureReason closure}
 
     $maybe closure <- mclosure
@@ -72,20 +83,11 @@
             ^{tagWidget tag}
 
     <div :is_preview:.preview>
-        $if can_reply
-            <div .comment-action>
-                <a href="@{comment_route_reply comment_id}">
-                    reply
 
         $if can_edit
             <div .comment-action>
                 <a href="@{comment_route_edit comment_id}">
                     edit
-
-        $if can_close
-            <div .comment-action>
-                <a href="@{comment_route_close comment_id}">
-                    close
 
         $if can_retract
             <div .comment-action>
@@ -96,6 +98,11 @@
             <div .comment-action>
                 <a href="@{comment_route_delete comment_id}">
                     delete
+
+        $if can_close
+            <div .comment-action>
+                <a href="@{comment_route_close comment_id}">
+                    close
 
         $if can_rethread
             <div .comment-action>
@@ -112,13 +119,9 @@
                 <a href="@{comment_route_flag comment_id}">
                     flag
 
-        $maybe parent_id <- commentParent comment
+        $if can_reply
             <div .comment-action>
-                <a href="@{comment_route_permalink parent_id}">
-                    parent
-
-        <div .comment-action>
-            <a href="@{comment_route_permalink comment_id}">
-                permalink
+                <a href="@{comment_route_reply comment_id}">
+                    reply
 
     ^{inner_widget}
