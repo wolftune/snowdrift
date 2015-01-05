@@ -2,23 +2,24 @@ module Version (mkVersion) where
 
 import Import
 
-import System.IO
-import System.IO.Temp
-import System.Process
-import System.Exit
+-- import System.IO
+-- import System.IO.Temp
+-- import System.Process
+-- import System.Exit
 
 import Language.Haskell.TH
 
-import Data.Char
+-- import Data.Char
 
 
 getVersion :: IO (String, String)
-getVersion = withSystemTempFile "version" $ \ filename handle -> do
-    hClose handle
-    base <- takeWhile (not . isSpace) <$> readFile ".git/refs/heads/master"
-    ExitSuccess <- system $ "git diff " ++ base ++ " -- . >" ++ filename
-    diff <- readFile filename
-    return (base, diff)
+getVersion = return ("foo", "bar")
+-- getVersion = withSystemTempFile "version" $ \ filename handle -> do
+--     hClose handle
+--     base <- takeWhile (not . isSpace) <$> readFile ".git/refs/heads/master"
+--     ExitSuccess <- system $ "git diff " ++ base ++ " -- . >" ++ filename
+--     diff <- readFile filename
+--     return (base, diff)
 
 
 mkVersion :: Q Exp
