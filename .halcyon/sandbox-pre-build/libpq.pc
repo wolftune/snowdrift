@@ -1,0 +1,5 @@
+Name: libpq
+Description: PostgreSQL libpq library
+Version: 9
+Cflags: -I/usr/include
+Libs: -L/usr/lib64 -lpq

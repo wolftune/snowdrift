@@ -1,0 +1,4 @@
+linux-(centos|fedora):postgresql-devel
+linux-(centos|fedora):pkgconfig
+linux-(debian|ubuntu):libpq-dev
+linux-(debian|ubuntu):pkg-config

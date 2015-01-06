@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+source "${HALCYON_DIR}/src.sh"
+
+
+sandbox_pre_build_hook () {
+	expect_vars HALCYON_BASE \
+		HALCYON_INTERNAL_PLATFORM
+
+	local tag source_dir constraints
+	expect_args tag source_dir constraints -- "$@"
+
+	# NOTE: There is no pkg-config file for libpq on RedHat derivatives.
+	# https://bugzilla.redhat.com/show_bug.cgi?id=977115
+
+	if [[ "${HALCYON_INTERNAL_PLATFORM}" =~ linux-(centos|fedora) ]]; then
+		copy_file "${source_dir}/.halcyon/sandbox-pre-build/libpq.pc" \
+			"${HALCYON_BASE}/sandbox/usr/lib64/pkgconfig/libpq.pc" || return 1
+	fi
+}
+
+
+sandbox_pre_build_hook "$@"
