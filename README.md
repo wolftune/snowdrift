@@ -39,6 +39,6 @@ TODO
 About
 -----
 
-Made by the [Snowdrift team](https://snowdrift.coop/p/snowdrift/who).  Published under the [GNU GPL](https://github.com/mietek/instant-snowdrift/blob/master/LICENSE).
+Made by the [Snowdrift team](https://snowdrift.coop/p/snowdrift/who).  Published under the [GNU AGPLv3+](https://github.com/mietek/instant-snowdrift/blob/master/LICENSE).
 
 Packaging by [Miëtek Bak](https://mietek.io/).
