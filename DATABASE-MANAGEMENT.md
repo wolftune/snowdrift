@@ -115,16 +115,18 @@ Similar adjustments are needed for test database setup and resetting databases.
 
 ### Setting up the development database manually
 
-Copy the config/postgresql.template to a new config/postgresql.yml file:
+#### Copy the config/postgresql.template to a new config/postgresql.yml file:
 
     cp config/postgresql.template config/postgresql.yml
 
-Create database user called "snowdrift_development"
-*without* superuser, createdb, or createuser privileges:
+#### Create database user
+
+Make a database user called called "snowdrift_development" *without* superuser,
+createdb, or createuser privileges:
 
     sudo -u postgres createuser -S -D -R snowdrift_development
 
-Run postgres psql:
+#### Run postgres psql:
 
     sudo -u postgres psql
 
@@ -132,30 +134,39 @@ You should see a line that looks like:
 
     postgres=#
 
-(NOTE: all of the commands run from the postgres shell must end with a `;`)
+NB: all of the commands run from the postgres shell must end with a `;`.
 
-Create snowdrift_development database:
+#### Create snowdrift_development database:
 
     postgres=# create database snowdrift_development;
 
-Add a password to the snowdrift_development user
-(for reference, the sdm script generates a random passphrase for this step;
-you may substitute any arbitrary passphrase instead of 'somepassphrase'):
+#### Add a password to the snowdrift_development user:
 
     postgres=# alter user snowdrift_development with encrypted password 'somepassphrase';
 
-Then add user to database:
+NB: The sdm script generates a random passphrase for the step above;
+you may substitute any arbitrary passphrase instead of 'somepassphrase'.
+
+NB: We prefer the term "passphrase" in general throughout the Snowdrift code,
+but "password" is a keyword from PostgreSQL which must be used in the places
+described here for manual database setup.
+
+#### Add the user to the database:
 
     postgres=# grant all privileges on database snowdrift_development to snowdrift_development;
 
-Leave postgres (with ctrl-D).
+Now, leave postgres (with ctrl-D).
 
-Edit config/postgresql.yml and update the password to match the one you entered.
+#### Update config/postgresql.yml with the new pass
 
-Import development database:
+Open config/postgresql.yml and update the password line to use the passphrase
+you entered when making the user.
+
+#### Import development database:
 
     sudo -u postgres psql snowdrift_development < devDB.sql
 
+---
 
 ### Reset the development database manually
 
@@ -175,6 +186,7 @@ and then the "Import development database" command:
     sudo -u postgres psql snowdrift_development <devDB.sql
 
 That's it. You will *not* need to re-run the database user commands.
+
 
 ### Setting up the test template database manually
 
@@ -205,13 +217,14 @@ Then, add any arbitrary passphrase to the snowdrift_test user
 
 Leave postgres (with ctrl-D).
 
-If you used a different password than the one you used for
+If you used a different passphrase than the one you used for
 snowdrift_development, then edit config/postgresql.yml and add a "password:"
 line under "Testing:" along with your new passphrase.
 
 Finally, import the testDB.sql to the new template database:
 
     sudo -u postgres psql snowdrift_test_template <testDB.sql
+
 
 ### Resetting the testDB manually
 
